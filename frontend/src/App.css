@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+.libros{
+  border: 1px solid gray;
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+}
