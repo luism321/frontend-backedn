@@ -2,6 +2,7 @@ import React from "react"
 
 
 export default class ApiresServi{
+
     static Actualizar(id,autores){
             return fetch(`http://localhost:5000/Actualizar/${id}`, {
                 'method': 'PUT',
@@ -10,15 +11,14 @@ export default class ApiresServi{
                 },
                 body:JSON.stringify(autores)
             }) 
-            .then((response) => {
-                console.log(response);
-                return response.json();
+            .then((resp) => {
+                console.log(resp);
+                return resp.json();
             })
             .then((data) => {
                 console.log(data);
             })
     }
-
 
     static InsertarAutores(autores){
         console.log(autores)
@@ -29,14 +29,15 @@ export default class ApiresServi{
                 },
                 body:JSON.stringify(autores)
             }) 
-            .then((response) => {
-                console.log(response);
-                return response.json();
+            .then((resp) => {
+                console.log(resp.body);
+                return resp.json();
             })
             .then((data) => {
                 console.log(data);
             })
     }
+
     static InsertarLibro(autores){
         console.log(autores)
             return fetch(`http://localhost:5000/Register_libros/${autores.id}`, {
@@ -54,7 +55,6 @@ export default class ApiresServi{
                 console.log(data);
             })
     }
-
 
     static EliminarAutor(id){
         console.log(id)

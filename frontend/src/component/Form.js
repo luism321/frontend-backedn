@@ -8,7 +8,6 @@ moment.locale('es');
 
 
 function Form(props) {
-console.log(props.libro)
     const [nombres, setNombres] = useState(props.autor.nombres)
     const [apellidos, setApellidos] = useState(props.autor.apellidos)
     const [nombre_libro, setnombre_libro] = useState("")
@@ -16,24 +15,26 @@ console.log(props.libro)
     const [codigo, setcodigo] = useState(props.autor.codigo)
     const [id, setid] = useState(props.autor.id)
 
-    const Actualizar = () => {
+
+    const actualizar = () => {
         ApiresServi.Actualizar(props.autor.codigo, { nombres, apellidos })
-            .then(resp => console.log(resp))
+            .then(resp => props.actualizar(resp))
             .catch(error => console.log(error))
     }
 
     const insertarAutor = () => {
         ApiresServi.InsertarAutores({ codigo, nombres, apellidos })
-            .then(resp => console.log(resp))
+            .then(resp => props.insertarAutor(resp))
             .catch(error => console.log(error))
 
     }
+
     const insertarlibro = () => {
         ApiresServi.InsertarLibro({ id, nombre_libro, fecha })
-            .then(resp => console.log(resp))
+            .then(resp => props.agregarlibro(resp))
             .catch(error => console.log(error))
-
     }
+    
     return (
         <div>
             {props.autor.id?
@@ -73,7 +74,7 @@ console.log(props.libro)
                         : <div><h4>Agregar nuevo</h4></div>}
                     <div className="Formulario_input">
                         {props.autor.codigo ?
-                            ""
+                           null
                             : <div>
                                 <FormLabel htmlFor="title" >codigo</FormLabel>
                                 <Input
@@ -102,7 +103,7 @@ console.log(props.libro)
                             <button className="mt-3
                     btn btn-warning "
                                 Style="width:100%"
-                                onClick={Actualizar}
+                                onClick={actualizar}
                             >Actualizar</button>
                             : <button className="mt-3
                     btn btn-success "
@@ -112,7 +113,6 @@ console.log(props.libro)
                     </div>
                 </div>
             ) : null}
-            ""
             </div>}
 
         </div>

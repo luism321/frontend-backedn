@@ -5,7 +5,7 @@ import psycopg2
 from flask_cors import CORS
 import requests
 import flask_excel as excel
-
+import pandas as pd
 
 app = Flask(__name__)
 conexion = psycopg2.connect("host='localhost' user='postgres' password='labest21' dbname='api_libros'")
@@ -28,6 +28,20 @@ def listar_cursos():
     except Exception as ex:
         return jsonify({'mensaje': "Error"})
 
+@app.route('/ExporXLS/<id>', methods=['GET'])
+def listar_xlsx(id):
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("SELECT  nombres,apellidos,nombre_libro,fecha FROM autores left join libros on autores.codigo=libros.codigo WHERE autores.codigo='{codigo}' ".format(codigo=id))
+        datos = cursor.fetchall()
+        print(datos)
+        fd=pd.DataFrame(datos, columns = ['nombres','apellidos','nombre_libro','fecha'])
+        libros_excel=fd.to_excel("libros.xlsx")
+        print(fd)
+        return ("ok")
+    except Exception as ex:
+        print(ex)
+        return jsonify({'mensaje': "Error"})
 
 def leer_autores_bd(codigo):
     try:

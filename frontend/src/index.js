@@ -1,11 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App"
 import "bootswatch/dist/materia/bootstrap.min.css"
-import 'jquery/src/jquery';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import reportWebVitals from './reportWebVitals';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
