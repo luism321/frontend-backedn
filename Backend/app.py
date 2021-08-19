@@ -12,6 +12,7 @@ conexion = psycopg2.connect("host='localhost' user='postgres' password='labest21
 CORS(app)
 excel.init_excel(app)
 
+
 @app.route('/Autores', methods=['GET'])
 def listar_cursos():
     try:
