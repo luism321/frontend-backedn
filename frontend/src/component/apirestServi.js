@@ -1,19 +1,25 @@
-import React from 'react'
+import React from "react"
 
 
 export default class ApiresServi{
     static Actualizar(id,autores){
-        console.log(autores)
             return fetch(`http://localhost:5000/Actualizar/${id}`, {
                 'method': 'PUT',
                 headers: {
                   'Content-Type':'application/json'
                 },
-                autores:JSON.stringify(autores)
+                body:JSON.stringify(autores)
             }) 
-            .then(resp=>resp.json())
-            .then(resp=>console.log(resp))
+            .then((response) => {
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
     }
+
+
     static InsertarAutores(autores){
         console.log(autores)
             return fetch('http://localhost:5000/Register', {
@@ -21,11 +27,35 @@ export default class ApiresServi{
                 headers: {
                   'Content-Type':'application/json'
                 },
-                autores:JSON.stringify(autores)
+                body:JSON.stringify(autores)
             }) 
-            .then(resp=>resp.json())
-            .then(resp=>console.log(resp))
+            .then((response) => {
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
     }
+    static InsertarLibro(autores){
+        console.log(autores)
+            return fetch(`http://localhost:5000/Register_libros/${autores.id}`, {
+                'method': 'POST',
+                headers: {
+                  'Content-Type':'application/json'
+                },
+                body:JSON.stringify(autores)
+            }) 
+            .then((response) => {
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+    }
+
+
     static EliminarAutor(id){
         console.log(id)
             return fetch(`http://localhost:5000/Eliminar/${id}`, {
