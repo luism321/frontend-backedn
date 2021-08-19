@@ -53,6 +53,20 @@ function Autores(props) {
         setLeerLibros([])
     }
 
+    const Export = (e) => {
+        fetch(`http://localhost:5000/ExporXLS/${e}`, {
+            'method': 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(resp => resp.json())
+            .then(resp => setLeerLibros(resp)
+                .then(resp => console.log(resp))
+            )
+            .catch(error => console.log(error))
+    }
+
 
     return (
         <div>
@@ -114,7 +128,7 @@ function Autores(props) {
                                                 >Eliminar</Button></div>
                                                 <div className="ml-2"><Button variant="outlined"
                                                     color="default"
-                                                    onClick={() => eliminarAutor(autor)}
+                                                    onClick={() => Export(autor.codigo)}
                                                 >Reportes excel</Button></div>
                                                 <div className="ml-2"><Button variant="outlined"
                                                     color="default"
